@@ -1,6 +1,6 @@
 
 *.tfstate
 *.tfstate.backup
-*tfstate.lock.info
+*.tfstate.lock.info
 *.lock.hcl
 *.pem
