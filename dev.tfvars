@@ -1,0 +1,6 @@
+instance_type = "t2.medium"
+ami = "ami-06640050dc3f556bb"
+tags-name = "diae-123456"
+tags-descr = "This is my instance description"
+tags-env = "Development"
+tags-owner = "DevOps"

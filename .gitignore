@@ -1,6 +1,6 @@
 
-EC2/terraform.tfstate
-EC2/terraform.tfstate.backup
-EC2/.terraform/providers/registry.terraform.io/hashicorp/aws/3.75.1/darwin_arm64/terraform-provider-aws_v3.75.1_x5
-EC2/.terraform.tfstate.lock.info
-EC2/.terraform.lock.hcl
+*.tfstate
+*.tfstate.backup
+*tfstate.lock.info
+*.lock.hcl
+*.pem
