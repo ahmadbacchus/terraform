@@ -3,7 +3,7 @@ pipeline{
     parameters{
       choice(choices: ['create', 'destroy'],name: 'action')
     }
-    environments{
+    environment{
         terraform = "/opt/homebrew/bin/terraform"
     }
     stages{
