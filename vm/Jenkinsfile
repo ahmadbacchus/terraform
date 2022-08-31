@@ -15,9 +15,9 @@ pipeline{
                     sh "${env.terraform} fmt"
                     script{
                         if (params.action == "create") {
-                            sh "${env.terraform} apply -var='tags-name=${params.InstanceName}' -var-file='dev.tfvars' -auto-approve"
+                            sh "${env.terraform} apply -var-file='dev.tfvars' -var='tags-name=${params.InstanceName}' -auto-approve"
                         }else if (params.action == "destroy") {
-                            sh "${env.terraform} destroy -var='tags-name=${params.InstanceName}' -var-file='dev.tfvars' -auto-approve"
+                            sh "${env.terraform} destroy -var-file='dev.tfvars' -var='tags-name=${params.InstanceName}'  -auto-approve"
                         }
                     }
                 }
