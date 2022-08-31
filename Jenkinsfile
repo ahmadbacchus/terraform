@@ -9,9 +9,9 @@ pipeline{
                 dir("vm"){
                     sh "/opt/homebrew/bin/terraform init"
                     sh "/opt/homebrew/bin/terraform fmt"
-                    if "$params.action" == "create" {
+                    if (params.action == "create") {
                         sh "/opt/homebrew/bin/terraform apply -var-file='dev.tfvars' -auto-approve"
-                    }else if "$params.action" == "destroy"{
+                    }else if (params.action == "destroy") {
                         sh "/opt/homebrew/bin/terraform destroy -var-file='dev.tfvars' -auto-approve"
                     }
                 }
