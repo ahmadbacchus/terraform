@@ -75,6 +75,7 @@ resource "aws_instance" "app_server" {
     Description = var.tags-descr
     Environment = var.tags-env
     Owner = var.tags-owner
+    test = "myval"
   }
 }
 
