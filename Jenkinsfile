@@ -5,7 +5,12 @@ pipeline{
             steps{
                 sh "whoami"
                 sh "pwd"
-                sh "/opt/homebrew/bin/terraform"
+
+                dir("vm"){
+                    sh "/opt/homebrew/bin/terraform init"
+                    sh "/opt/homebrew/bin/terraform fmt"
+                }
+                
                 
             }
         }
