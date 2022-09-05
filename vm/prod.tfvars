@@ -1,5 +1,0 @@
-instance_type = "t2.micro"
-tags-name = "piae-123456"
-tags-descr = "This is my instance description"
-tags-env = "Production"
-tags-owner = "DevOps"

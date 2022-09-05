@@ -4,3 +4,4 @@
 *.tfstate.lock.info
 *.lock.hcl
 *.pem
+terraform-provider-aws_v4.26.0_x5

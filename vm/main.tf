@@ -5,6 +5,11 @@ terraform {
       version = "~> 4.16"
     }
   }
+  backend "s3" {
+    bucket = "my-tf-test-backend-dev"
+    key    = "Development/VM"
+    region = "us-east-1"
+  }
   required_version = ">= 1.2.0"
 }
 
@@ -31,7 +36,6 @@ resource "aws_subnet" "main" {
   }
 }
 
-
 #Create Security group
 resource "aws_security_group" "main" {
   name        = "Main-Security-group"
@@ -57,31 +61,24 @@ resource "aws_security_group_rule" "egress-allow_all" {
   type              = "egress"
   to_port           = 0
   protocol          = "-1"
-  cidr_blocks      = ["0.0.0.0/0"]
+  cidr_blocks       = ["0.0.0.0/0"]
   from_port         = 0
   security_group_id = aws_security_group.main.id
 }
 
 #Create EC2
 resource "aws_instance" "app_server" {
-  ami           = var.ami
-  instance_type = var.instance_type
+  ami                    = var.ami
+  instance_type          = var.instance_type
   vpc_security_group_ids = [aws_security_group.main.id]
-  subnet_id = aws_subnet.main.id
-  key_name = var.key-name
-  user_data = file("install.sh")
+  subnet_id              = aws_subnet.main.id
+  #key_name = var.key-name
+  user_data = file("install_scripts/install.sh")
   tags = {
-    Name = var.tags-name
+    Name        = var.tags-name
     Description = var.tags-descr
     Environment = var.tags-env
-    Owner = var.tags-owner
-    test = "myval"
+    Owner       = var.tags-owner
+    test        = "myval"
   }
-}
-
-
-
-output "instance_ip_addr" {
-  value       = aws_instance.app_server.private_ip
-  description = "The private IP address of the main server instance."
 }
