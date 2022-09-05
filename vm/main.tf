@@ -82,3 +82,27 @@ resource "aws_instance" "app_server" {
     test        = "myval"
   }
 }
+
+resource "null_resource" "register_with_opsview"{
+  provisioner "local-exec" {
+    command = "curl --location --request POST 'http://localhost:8080/job/pipeline_test/buildWithParameters?action=register&ip=${aws_instance.app_server.private_ip}'"
+  }
+
+
+
+  depends_on = [
+    aws_instance.app_server
+  ]
+}
+
+resource "null_resource" "register_with_cmdb"{
+  provisioner "local-exec" {
+    command = "curl --location --request POST 'http://localhost:8080/job/pipeline_test/buildWithParameters?action=register&ip=${aws_instance.app_server.private_ip}'"
+  }
+
+
+
+  depends_on = [
+    aws_instance.app_server
+  ]
+}

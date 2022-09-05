@@ -1,39 +1,19 @@
-variable "instance_type" {
- type = string
- description = "EC2 instance type"
-}
-
-variable "vpc_security_group_ids" {
- type = list(string)
- description = "The description of the VM"
-}
-
-variable "key-name" {
- type = string
- description = "The name of the VM"
-}
-
 variable "tags-name" {
  type = string
- description = "The name of the VM"
+ description = "The name of the RDS"
 }
 
 variable "tags-descr" {
  type = string
- description = "The description of the VM"
-}
-
-variable "ami" {
- type = string
- description = "The description of the VM"
+ description = "The description of the RDS"
 }
 
 variable "tags-env" {
  type = string
- description = "The environment of the VM"
+ description = "The environment of the RDS"
 }
 
 variable "tags-owner" {
  type = string
- description = "The owner of the VM"
+ description = "The owner of the RDS"
 }

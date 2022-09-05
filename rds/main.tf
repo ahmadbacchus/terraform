@@ -28,4 +28,35 @@ resource "aws_db_instance" "default" {
   password             = "foobarbaz"
   parameter_group_name = "default.mysql5.7"
   skip_final_snapshot  = true
+
+
+    #Register the machione with service 1
+  provisioner "local-exec" {
+    command = "curl --location --request POST 'http://localhost:8080/job/pipeline_test/buildWithParameters?action=register&ip=${self.endpoint}'"
+  }
+
+  provisioner "local-exec" {
+    when = destroy
+    command = "curl --location --request POST 'http://localhost:8080/job/pipeline_test/buildWithParameters?action=de-register&ip=${self.endpoint}'"
+  }
+
+  #Register the machione with service 2
+  provisioner "local-exec" {
+    command = "curl --location --request POST 'http://localhost:8080/job/pipeline_test/buildWithParameters?action=register&ip=${self.endpoint}'"
+  }
+
+  provisioner "local-exec" {
+    when = destroy
+    command = "curl --location --request POST 'http://localhost:8080/job/pipeline_test/buildWithParameters?action=de-register&ip=${self.endpoint}'"
+  }
+
+  #Register the machione with service 3
+  provisioner "local-exec" {
+    command = "curl --location --request POST 'http://localhost:8080/job/pipeline_test/buildWithParameters?action=register&ip=${self.endpoint}'"
+  }
+
+  provisioner "local-exec" {
+    when = destroy
+    command = "curl --location --request POST 'http://localhost:8080/job/pipeline_test/buildWithParameters?action=de-register&ip=${self.endpoint}'"
+  }
 }
